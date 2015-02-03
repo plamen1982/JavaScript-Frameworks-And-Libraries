@@ -1,0 +1,21 @@
+{
+  "name": "01 Knockout.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/plamen1982/JavaScript-Frameworks-And-Libraries",
+  "authors": [
+    "Plamen Hristov"
+  ],
+  "description": "Shape up with Knockout",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "~3.2.0",
+    "bootstrap": "~3.3.2"
+  }
+}

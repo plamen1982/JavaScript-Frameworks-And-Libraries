@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reset Clicks</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://knockoutjs.com/examples/clickCounter.html" class="navbar-brand">Check up the Live
+                examples</a>
+        </div>
+    </div>
+
+    <div class="alert alert-dismissable alert-success">
+        You have clicked <span data-bind="text: numberOfClicks"></span>
+        times
+        <button class="btn btn-default" data-bind="click: registerClick ">Register a click</button>
+    </div>
+
+
+    <div class="alert alert-dismissable alert-danger" data-bind='visible: hasClickedTooManyTimes'>
+        That's too many clicks! Do you want to reset.
+        <button class="btn btn-default" data-bind='click: resetClicks'>Reset clicks</button>
+    </div>
+</div>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/bootstrap/dist/css/bootstrap-theme.css"></script>
+<script src="../bower_components/knockout/dist/knockout.js"></script>
+<script type="text/javascript">
+    var ClickCounterViewModel = function () {
+        this.numberOfClicks = ko.observable(0);
+
+        this.registerClick = function () {
+            return this.numberOfClicks(this.numberOfClicks() + 1);
+        };
+        this.resetClicks = function () {
+            return this.numberOfClicks(0);
+        };
+
+        this.hasClickedTooManyTimes = ko.computed(function () {
+            return this.numberOfClicks() >= 3;
+        }, this)
+    };
+    ko.applyBindings(new ClickCounterViewModel());
+</script>
+
+</body>
+</html>

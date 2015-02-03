@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+</head>
+
+
+<body>
+
+<div class="container">
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://knockoutjs.com/examples/simpleList.html" class="navbar-brand">
+                Check up the Live examples</a>
+        </div>
+    </div>
+    <form class="form-group" data-bind="submit: addItem">
+        <label for="itemToAdd">
+            Item to Add
+        </label>
+        <input class="form-control" id="itemToAdd" data-bind='value: itemToAdd, valueUpdate: "afterkeydown"'/><br>
+        <button class="btn btn-default" type="submit" data-bind="enable: itemToAdd().length > 0">Add
+        </button>
+        <p>Your items:</p>
+        <select class="form-control" multiple="multiple" width="150"
+                data-bind="options: items">
+        </select>
+    </form>
+</div>
+
+
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/bootstrap/dist/css/bootstrap-theme.css"></script>
+<script src="../bower_components/knockout/dist/knockout.js"></script>
+
+<script type="text/javascript">
+    var SimpleListModel = function (items) {
+        this.items = ko.observableArray(items);
+        this.itemToAdd = ko.observable("");
+        this.addItem = function () {
+            if (this.itemToAdd() != "") {
+                this.items.push(this.itemToAdd()); // Adds the item. Writing to the "items" observableArray causes any associated UI to update.
+                this.itemToAdd(""); // Clears the text box, because it's bound to the "itemToAdd" observable
+            }
+        }.bind(this);  // Ensure that "this" is always this view model
+    };
+
+    ko.applyBindings(new SimpleListModel(["Alpha", "Beta", "Gamma"]));
+
+</script>
+</body>
+</html>
