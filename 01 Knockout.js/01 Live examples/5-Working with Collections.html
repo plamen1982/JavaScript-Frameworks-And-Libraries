@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Working with Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+</head>
+<body>
+<div class="container">
+    <h2> People </h2>
+    <ul data-bind="foreach: people">
+        <li>
+            <div>
+                <span data-bind="text: name">
+
+                </span> has
+                <span data-bind="text: children().length">
+
+                </span> children;
+                <button data-bind="click: addChild" class="btn btn-default">Add a child</button>
+                <span  data-bind="visible: $root.showRenderTimes" class="renderTime">
+                    (person rendered at <span data-bind="text: new Date().getSeconds()"></span>)
+                </span>
+            </div>
+            <ul data-bind="foreach: children">
+                <li>
+                    <span data-bind="text: $data">
+                    </span>
+                    (child rendered at <span data-bind="new Date().getSeconds()"></span>)
+                    <span>
+
+                    </span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <label>
+        <input data-bind="checked: showRenderTimes" type="checkbox"/>
+        Show render times
+    </label>
+</div>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/bootstrap/dist/css/bootstrap-theme.css"></script>
+<script src="../bower_components/knockout/dist/knockout.js"></script>
+
+<script type="text/javascript">
+
+// Define a "Person" class that tracks its own name and children, and has a method to add a new child
+
+    var Person = function(name, children){
+        this.name = name;
+        this.children = ko.observableArray(children);
+
+        this.addChild = function(){
+            this.children.push("New child")
+        }.bind(this)
+    };
+
+// The view model is an abstract description of the state of the UI, but without any knowledge of the UI technology (HTML)
+
+ var viewModel = {
+    people : [
+        new Person("Annabelle",["Arnie", "Andres", "Apple"] ),
+        new Person("Bertie",["Boutros-Boutros", "Brianna", "Barbie", "Bee-bop"] ),
+        new Person("Charles", ["Cayenne", "Cleopatra"])
+    ],
+     showRenderTimes: ko.observable(false)
+ };
+    ko.applyBindings(viewModel)
+
+</script>
+</body>
+</html>
