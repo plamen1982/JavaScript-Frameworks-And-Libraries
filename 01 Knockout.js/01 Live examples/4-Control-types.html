@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control types</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://knockoutjs.com/examples/controlTypes.html" class="navbar-brand">
+                Check up the Live example</a>
+        </div>
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col-md-3">What is in HTML</th>
+            <th class="col-md-3"></th>
+            <th class="col-md-3"></th>
+            <th class="col-md-3 ">What is in the model</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="col-md-3">Text value(updates on change):</td>
+            <td  class="col-md-3">
+                <input data-bind="value: stringValue" type="text">
+            </td>
+            <td class="col-md-3">Text value: </td>
+            <td class="col-md-3">
+                <span data-bind="text: stringValue"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Text value(updates on keystroke):</td>
+            <td class="col-md-3">
+                <input data-bind='value: stringValue, valueUpdate:"afterkeydown"' type="text">
+            </td>
+            <td class="col-md-3">Password: </td>
+            <td class="col-md-3">
+                <span data-bind="text: passwordValue"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Text value(multi-line):</td>
+            <td class="col-md-3">
+                <textarea data-bind="value: stringValue"></textarea>
+            </td>
+            <td class="col-md-3">Bool value</td>
+            <td class="col-md-3">
+                <span data-bind='text: booleanValue() ? "True" : "False"'></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Password</td>
+            <td class="col-md-3">
+                <input data-bind="value: passwordValue" type="password">
+            </td>
+            <td class="col-md-3">Selected option</td>
+            <td class="col-md-3">
+                <span data-bind="text: selectedOptionValue"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Checkedbox</td>
+            <td class="col-md-3">
+                <input data-bind="checked: booleanValue" type="checkbox"/>
+            </td>
+            <td class="col-md-3">Multi selected options</td>
+            <td class="col-md-3">
+                <span data-bind="text: multipleSelectedOptionValues"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Drop-down list:</td>
+            <td class="col-md-3">
+                <select data-bind="options: optionValues, value: selectedOptionValue"></select>
+            </td>
+            <td class="col-md-3">Radio Button selection</td>
+            <td class="col-md-3">
+                <span data-bind="text: radioSelectedOptionValue"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Multi-select drop-down list:</td>
+            <td class="col-md-3">
+                <select multiple="multiple" data-bind="options: optionValues, selectedOptions: multipleSelectedOptionValues"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Radio buttons: </td>
+            <td class="col-md-3">
+                <input data-bind="checked:radioSelectedOptionValue" type="radio" value="Alpha">
+                <input data-bind="checked:radioSelectedOptionValue" type="radio" value="Beta">
+                <input data-bind="checked:radioSelectedOptionValue" type="radio" value="Gama">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/bootstrap/dist/css/bootstrap-theme.css"></script>
+<script src="../bower_components/knockout/dist/knockout.js"></script>
+
+<script type="text/javascript">
+ var viewModel = {
+     stringValue : ko.observable("Hello"),
+     passwordValue : ko.observable("mypass"),
+     booleanValue : ko.observable(true),
+     optionValues : ["Alpha", "Beta", "Gamma"],
+     selectedOptionValue : ko.observable("Gamma"),
+     multipleSelectedOptionValues : ko.observable(["Alpha"]),
+     radioSelectedOptionValue : ko.observable("Beta")
+ };
+    ko.applyBindings(viewModel)
+</script>
+</body>
+</html>
