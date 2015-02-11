@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>http://createjs.com/tutorials/Inheritance/</title>
+	<style>
+        body {
+        	margin: 0;
+        	padding: 7px;
+        	background-color: rgba(255,255,255,0);
+        }
+
+        canvas {
+        	border: solid 1px rgba(0,0,0,0.05);
+        }
+    </style>
+	<script src="//code.createjs.com/createjs-2014.12.12.min.js"></script>
+	<script src="Button.js"></script>
+	<script>
+		var stage, holder;
+		function init() {
+			stage = new createjs.Stage("demoCanvas");
+			stage.enableMouseOver();
+            var x = 20;
+
+			var btn1 = stage.addChild(new Button("Hi, my name is", "white"));
+			btn1.y = 20;
+
+			var btn2 = stage.addChild(new Button("Plamen", "green"));
+			btn2.y = btn1.y + 50;
+
+			var btn3 = stage.addChild(new Button("Hristov", "red"));
+			btn3.y = btn2.y + 50;
+
+            var btn4 = stage.addChild(new Button("What is your name?", "yellow"))
+            btn4.y = btn3.y + 50;
+
+			btn1.x = btn2.x = btn3.x = btn4.x = x;
+
+			createjs.Ticker.on("tick", stage);
+		}
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="300" height="300">
+		alternate content
+	</canvas>
+</body>
+</html>
