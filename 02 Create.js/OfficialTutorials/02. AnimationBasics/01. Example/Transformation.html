@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Transformation</title>
+
+    <style>
+
+    </style>
+    <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+
+</head>
+<body onload="init()">
+	<canvas id="canvas" width="300" height="300">
+		alternate content
+	</canvas>
+    <script>
+
+          var stage;
+          var circle;
+          var rect;
+      function init() {
+          stage = new createjs.Stage('canvas');
+          circle = new createjs.Shape();
+          rect = new createjs.Shape();
+
+          circle.graphics.f('red').dc(0, 0, 12.5);
+          circle.x = 25;
+          circle.y = 25;
+          stage.addChild(circle);
+
+          rect.graphics.f('blue').dr(0,0,25,25);
+          rect.y = 12.5;
+
+          createjs.Ticker.on('tick', handlerForTheTicker);
+          createjs.Ticker.setFPS(30)
+      }
+        function handlerForTheTicker(){
+            circle.x += 5;
+
+            if( circle.x == 150){
+               stage.removeChild(circle);
+                stage.addChild(rect);
+                rect.x = 150;
+                circle = rect;
+            }
+            stage.update();
+        }
+   	</script>
+</body>
+</html>
