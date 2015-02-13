@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+</head>
+<body onload="init()">
+<canvas id="canvas" width="300" height="300"></canvas>
+
+<script>
+    var stage, circle1, circle2;
+
+  		function init() {
+            stage = new createjs.Stage('canvas');
+            circle1 = new createjs.Shape();
+            circle1.graphics.f('blue').dc(0,25,25);
+            stage.addChild(circle1);
+
+            circle2 = new createjs.Shape();
+            circle2.graphics.f('green').dc(0,100,25);
+            stage.addChild(circle2);
+
+            stage.update();
+
+
+
+
+    }
+
+</script>
+</body>
+</html>
