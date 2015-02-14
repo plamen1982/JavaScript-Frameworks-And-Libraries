@@ -7,7 +7,14 @@
 </head>
 <body onload="init()">
 <canvas id="canvas" width="300" height="300"></canvas>
-
+<select onchange="createjs.Ticker.setFPS(Number(this.value))">
+    <option value="10">10 fps</option>
+    <option value="20" selected="selected">20 fps</option>
+    <option value="30">30 fps</option>
+    <option value="40">40 fps</option>
+    <option value="50">50 fps</option>
+    <option value="60">60 fps</option>
+</select>
 <script>
     var stage, circle1, circle2;
 
@@ -21,11 +28,22 @@
             circle2.graphics.f('green').dc(0,100,25);
             stage.addChild(circle2);
 
-            stage.update();
+            createjs.Ticker.on('tick', handleTick);
+            createjs.Ticker.setFPS(20);
+    }
 
+    function handleTick(event){
 
-
-
+        //time based
+        circle1.x = circle1.x + (event.delta)/1000*100;
+        if(circle1.x > stage.canvas.width){
+            circle1.x = 0;
+        }
+        circle2.x = circle2.x + 5; //100 / 20 = 5;
+        if(circle2.x > stage.canvas.width){
+            circle2.x = 0;
+        }
+        stage.update(event)
     }
 
 </script>
